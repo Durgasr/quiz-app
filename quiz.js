@@ -72,3 +72,43 @@ const quesJSON = [
     question: 'What does the Array.prototype.map() method return?',
   },
 ];
+
+
+let score=0;
+let currentQuestion = 0;
+const totalScore = quesJSON.length;
+
+//Accessing all the elements:
+const questionEl = document.getElementById("question");
+const optionEl = document.getElementById("options");
+const scoreEl = document.getElementById("score");
+const nextEl = document.getElementById('next');
+
+showQuestion()
+
+function showQuestion(){
+  // Destructuring the object
+  const {correctAnswer, options, question} = quesJSON[currentQuestion];
+
+  //Setting question text content
+  questionEl.textContent = question; 
+    
+    
+  //Populating the Options div with the buttons.
+  shuffledOptions.forEach((opt) => {
+    const btn = document.createElement('button');
+    btn.textContent = opt;
+    optionEl.appendChild(btn);
+  
+    // Event handling on the button:
+    btn.addEventListener("click", () => {
+      if(opt === correctAnswer){
+      score++
+      }
+      else{
+        score=score-0.25;
+      }
+    scoreEl.textContent = `Score: ${score} / ${totalScore}`;   
+    });
+  });
+}
