@@ -1,7 +1,7 @@
 const quesJSON = [
   {
     correctAnswer: 'alt',
-    options: ['title', 'alt ', 'aria-label', 'placeholder'],
+    options: ['title', 'alt', 'aria-label', 'placeholder'],
     question: 'In HTML, which attribute is used to provide alternate text for an image if the image cannot be displayed?',
   },
   {
@@ -73,42 +73,52 @@ const quesJSON = [
   },
 ];
 
-
-let score=0;
+let score = 0;
 let currentQuestion = 0;
 const totalScore = quesJSON.length;
 
 //Accessing all the elements:
-const questionEl = document.getElementById("question");
-const optionEl = document.getElementById("options");
-const scoreEl = document.getElementById("score");
-const nextEl = document.getElementById('next');
+const questionEl = document.getElementById ('question');
+const optionEl = document.getElementById ('options');
+const scoreEl = document.getElementById ('score');
+const nextEl = document.getElementById ('next');
 
-showQuestion()
+showQuestion ();
 
-function showQuestion(){
+function showQuestion () {
   // Destructuring the object
   const {correctAnswer, options, question} = quesJSON[currentQuestion];
 
   //Setting question text content
-  questionEl.textContent = question; 
-    
-    
+  questionEl.textContent = question;
+
+  const shuffledOptions = shuffleOptions (options);
+
   //Populating the Options div with the buttons.
-  shuffledOptions.forEach((opt) => {
-    const btn = document.createElement('button');
+  shuffledOptions.forEach (opt => {
+    const btn = document.createElement ('button');
     btn.textContent = opt;
-    optionEl.appendChild(btn);
-  
+    optionEl.appendChild (btn);
+
     // Event handling on the button:
-    btn.addEventListener("click", () => {
-      if(opt === correctAnswer){
-      score++
+    btn.addEventListener ('click', () => {
+      console.log(opt)
+      console.log(correctAnswer)
+      if (opt === correctAnswer) {
+        score++;
+      } else {
+        score = score - 0.25;
       }
-      else{
-        score=score-0.25;
-      }
-    scoreEl.textContent = `Score: ${score} / ${totalScore}`;   
+      scoreEl.textContent = `Score: ${score} / ${totalScore}`;
     });
   });
+}
+
+//Shuffling the Options
+function shuffleOptions (options) {
+  for (let i = options.length - 1; i >= 0; i--) {
+    const j = Math.floor (Math.random () * i + 1);
+    [options[i], options[j]] = [options[j], options[i]];
+  }
+  return options;
 }
