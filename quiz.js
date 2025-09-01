@@ -108,8 +108,20 @@ function showQuestion () {
         score = score - 0.25;
       }
       scoreEl.textContent = `Score: ${score} / ${totalScore}`;
+      nextQuestion ();
     });
   });
+}
+
+function nextQuestion () {
+  currentQuestion++;
+  optionEl.textContent = '';
+  if (currentQuestion >= quesJSON.length) {
+    questionEl.textContent = 'Quiz Completed!!';
+    nextEl.remove ();
+  } else {
+    showQuestion ();
+  }
 }
 
 //Shuffling the Options
