@@ -5,7 +5,7 @@ const quesJSON = [
     question: 'In HTML, which attribute is used to provide alternate text for an image if the image cannot be displayed?',
   },
   {
-    correctAnswer: 'z-inex',
+    correctAnswer: 'z-index',
     options: ['order', 'z-index', 'stacking', 'position-order'],
     question: 'In CSS, which property controls the stacking order of positioned',
   },
@@ -27,7 +27,7 @@ const quesJSON = [
   },
   {
     correctAnswer: '<article>',
-    options: ['<section>', '<div>', '<article', '<span>'],
+    options: ['<section>', '<div>', '<article>', '<span>'],
     question: 'Which HTML element is semantic and typically used for self-contained content like a blog post or news item?',
   },
   {
@@ -102,8 +102,6 @@ function showQuestion () {
 
     // Event handling on the button:
     btn.addEventListener ('click', () => {
-      console.log(opt)
-      console.log(correctAnswer)
       if (opt === correctAnswer) {
         score++;
       } else {
